@@ -1,29 +1,23 @@
 const mongoose = require('mongoose');
-const schema = new mongoose.Schema({
+const deptschema = mongoose.Schema({
     adminid: {
-        type: String,
-        required: false
-
-    },
-    adminname: {
-        type: String,
-        required: false
-    },
-    adminemail: {
         type: String,
         required: false
     },
     hodid: {
         type: String,
-        required: false
+        required: false,
+        default: null
     },
     hodname: {
         type: String,
-        required: false
+        required: false,
+        default: null
     },
     hodemail: {
         type: String,
-        required: false
+        required: false,
+        default: null
     },
     dept_name: {
         type: String,
@@ -41,4 +35,5 @@ const schema = new mongoose.Schema({
         required: false
     }
 })
-module.exports = mongoose.model('Department', schema);
+const deptmodel = mongoose.model("department", deptschema)
+module.exports = deptmodel

@@ -5,7 +5,7 @@ const departmentSchema = require('../Model/dept');
 const employeeSchema = require('../Model/Employee');
 router.use((req, res, next) => {
     if (req.session.empid && req.session.empcode) {
-        if (req.session.empcode == "4444")
+        if (req.session.empcode == "3333")
             next();
     }
     else {

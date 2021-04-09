@@ -31,24 +31,25 @@
 <body class="bg-color">
     <div class="container-fluid p-0 d-flex justify-content-center align-items-center">
         <div class="col-sm-6 p-4 my-sm-5 myformdiv shadow">
-            <form action="/emp/register" method="POST">
-                <%- include('partials/registererrors')%>
+            <form action="/auth/register" method="post">
+                <%- include('partials/Registererror')%>
+
                     <div>
                         <h1 class="text-center"> Registration Form</h1>
                     </div>
                     <div class="form-group p-3">
                         <label>Enter your name <span class="star">*</span></label>
-                        <input type="text" name="adminname" class="form-control mt-2" aria-describedby="emailHelp"
+                        <input type="text" name="name" class="form-control mt-2" aria-describedby="emailHelp"
                             placeholder="Enter your name" required>
                     </div>
                     <div class="form-group p-3">
                         <label>Enter your username <span class="star">*</span></label>
-                        <input type="text" name="adminusername" class="form-control mt-2" aria-describedby="emailHelp"
+                        <input type="text" name="username" class="form-control mt-2" aria-describedby="emailHelp"
                             placeholder="Enter Username" required>
                     </div>
                     <div class="form-group p-3">
                         <label>Enter your email <span class="star">*</span></label>
-                        <input type="text" name="adminemail" class="form-control mt-2" aria-describedby="emailHelp"
+                        <input type="text" name="email" class="form-control mt-2" aria-describedby="emailHelp"
                             placeholder="Enter your email" required>
                     </div>
                     <div class="form-group p-3">
