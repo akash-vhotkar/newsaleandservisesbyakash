@@ -17,4 +17,11 @@ router.post('/login', (req, res) => {
 router.get('/logout', (req, res) => {
     Authcontroller.logout(req, res);
 })
+router.get('/forget', (req, res) => {
+    Authcontroller.getforgetpage(req, res);
+})
+router.post('/forget', (req, res) => {
+    Authcontroller.handelforgerpassword(req, res);
+
+})
 module.exports = router;

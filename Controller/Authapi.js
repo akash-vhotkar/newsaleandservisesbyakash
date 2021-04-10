@@ -1,6 +1,7 @@
 const UserSchema = require('../Model/Employee');
 const bcrypt = require('bcrypt');
 const shortid = require('shortid');
+const Employee = require('./Employee');
 module.exports = {
     getlogin: function (req, res) {
         res.render("Login");
@@ -124,6 +125,68 @@ module.exports = {
         let messages = [];
         messages.push({ msg: "Logout Successfully  !" })
         res.render("Login", { messages });
+
+
+    },
+    getforgetpage: function (req, res) {
+        res.render('ForgetPassword');
+    },
+    handelforgerpassword: function (req, res) {
+
+
+
+
+        const name = req.body.name;
+        const email = req.body.email;
+        const username = req.body.username;
+        const password = req.body.password;
+        const confirm_password = req.body.confirm_password;
+        UserSchema.findOne({ username: username }).then((userdata) => {
+            if (userdata) {
+
+                let messages = [];
+                messages.push({ msg: "Username already exist !" })
+                res.render("ForgetPassword", { messages });
+            }
+            else {
+                if (password == confirm_password) {
+                    bcrypt.hash(password, 10, function (err, hash) {
+
+                        UserSchema.findOneAndUpdate({ emp_id: req.session.empid }, {
+                            emp_password: hash
+                        }, { new: true }, (err, data) => {
+                            if (data) {
+                                res.render("Login")
+
+                            }
+                            else {
+                                res.redirect('/auth/login')
+                            }
+
+                        })
+
+
+
+
+                    });
+
+
+                }
+                else {
+                    let messages = [];
+                    messages.push({ msg: "Password and confirm password does not match !" })
+                    res.render("ForgetPassword", { messages });
+                }
+
+            }
+        })
+
+
+
+
+
+
+
 
 
     }

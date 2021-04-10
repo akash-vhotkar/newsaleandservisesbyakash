@@ -33,9 +33,7 @@ router.get('/production', (req, res) => {
     RecceptionController.getproduction(req, res);
 
 })
-router.get('/closeleads', (req, res) => {
 
-})
 router.get('/Assign/:leadid', (req, res) => {
     RecceptionController.getassiglead(req, res, req.params.leadid);
 })

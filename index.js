@@ -29,8 +29,8 @@ app.use(function (req, res, next) {
 
 
 //routes
-app.get('', (req, res) => {
-    res.send(req.flash("thise"));
+app.get('/', (req, res) => {
+    res.render("Home")
 })
 
 
