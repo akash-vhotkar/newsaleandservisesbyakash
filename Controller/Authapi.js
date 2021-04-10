@@ -17,6 +17,7 @@ module.exports = {
 
                     if (result) {
                         req.session.empid = alluserdata.emp_id;
+                        req.session.empname = alluserdata.emp_name;
                         req.session.emptype = alluserdata.emp_type;
                         req.session.empcode = alluserdata.emp_code
                         if (alluserdata.emp_code == "1111") {
@@ -25,15 +26,19 @@ module.exports = {
 
                         }
                         if (alluserdata.emp_code == "2222") {
+                            req.session.Hodmessages = [{ msg: "Login Successfully " }]
                             res.redirect('/Hod/')
 
 
                         }
                         if (alluserdata.emp_code == "3333") {
+                            req.session.Receptionmessages = [{ msg: "Login Successfully " }]
                             res.redirect('/Reception/')
 
                         }
                         if (alluserdata.emp_code == "4444") {
+                            req.session.Empmessages = [{ msg: "Login Successfully " }]
+
                             res.redirect('/Emp/')
 
                         }

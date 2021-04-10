@@ -22,6 +22,9 @@ const callschema = mongoose.Schema({
     call_time: {
         type: String,
         default: date.format(now, 'YYYY/MM/DD HH:mm:ss')
+    },
+    call_emp_name: {
+        type: String
     }
 
 })

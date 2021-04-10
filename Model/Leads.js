@@ -4,13 +4,17 @@ const shema = new mongoose.Schema({
         type: String,
         required: false
     },
+    lead_created_emp_id: {
+        type: String,
+        required: false
+    },
     c_no: {
         type: String,
         required: false
     },
     leadid: {
         type: String,
-        required: true
+        required: false
     },
     c_email: {
         type: String,
@@ -21,13 +25,17 @@ const shema = new mongoose.Schema({
         required: false
     }, lead_desc: {
         type: String,
-        required: true
+        required: false
     },
     lead_status_string: {
         type: String,
         required: false
     },
     lead_closed_by_emp: {
+        type: String,
+        required: false
+    },
+    close_desc: {
         type: String,
         required: false
     },
@@ -38,12 +46,25 @@ const shema = new mongoose.Schema({
     },
     forworded_to_dept_id: {
         type: String,
-        required: false
+        required: false,
+        default: "Null"
+    },
+    forworded_to_dept_name: {
+        type: String,
+        required: false,
+        default: "Null"
     },
     forworded_to_emp_id: {
         type: String,
-        required: false
+        required: false,
+        default: "Null"
+    },
+    forworded_to_emp_name: {
+        type: String,
+        required: false,
+        default: "Null"
     }
+
 
 })
 

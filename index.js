@@ -6,7 +6,9 @@ const session = require('express-session');
 const url = require('./config/key').url;
 const flash = require('flash');
 const app = express();
+
 // middlewares
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.set('view engine', "ejs");
