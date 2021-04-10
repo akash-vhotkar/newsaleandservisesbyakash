@@ -31,7 +31,7 @@
     </nav>
 
     <div class="container">
-        <h1 class="text-center"> Department Page</h1>
+        <h1 class="text-center"> Employee Page</h1>
         <% if(typeof messages !='undefined' ){ %>
             <div>
                 <% messages.forEach(i=>{ %>
@@ -51,8 +51,6 @@
     </div>
 
     <div class="container">
-        <h1 class="text-center"> call management </h1>
-        <p class="text-center">click id and assign the employee</p>
 
 
 
@@ -88,7 +86,7 @@
                         <tr>
                             <th scope="row">
                                 <a style="text-decoration: none; ">
-                                    <%- i.c_id %>
+                                    <%- i.leadid %>
                                 </a>
 
                             </th>
@@ -109,7 +107,7 @@
                             </td>
 
                             <td>
-                                <%- i.forworded_to_dept%>
+                                <%- i.forworded_to_dept_name%>
                             </td>
                             <td>
                                 <%-i.forworded_to_emp_name%>
@@ -121,8 +119,7 @@
                             </td>
 
                             <td>
-                                <form action="/emp/lead/callmanagement/calldesc" method="POST">
-                                    <input type="text" class="d-none" name="c_id" id="" value="<%-i.c_id%>">
+                                <form action="/Emp/calldesc/<%-i.leadid %>" method="GET">
                                     <button class="btn btn-primary" type="submit">lead desc</button>
                                 </form>
                             </td>
@@ -143,7 +140,7 @@
             </tbody>
         </table>
 
-        <form action="/emp/lead/callmanagement/close" class="w-75 m-auto" id="myform" method="POST">
+        <form action="/Emp/close" class="w-75 m-auto" id="myform" method="POST">
             <div>
                 <h1 class="text-center"> close lead</h1>
             </div>
@@ -154,7 +151,7 @@
             </div>
             <div class="form-group p-3">
                 <label>Customer Id <span class="star">*</span></label>
-                <input type="text" readonly class="form-control" id="leadid" name="c_id" id="exampleInputEmail1"
+                <input type="text" readonly class="form-control" id="custid" name="leadid" id="exampleInputEmail1"
                     aria-describedby="emailHelp" placeholder="Enter Customer Id">
 
             </div>

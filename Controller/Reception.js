@@ -95,7 +95,7 @@ module.exports = {
             leadSchema.findOneAndUpdate({ leadid: leadid }, {
                 forworded_to_dept_id: deptdata.dept_id,
                 forworded_to_dept_name: deptdata.dept_name,
-                lead_status_string: "Assign"
+                lead_status_string: "Pending"
             }, { new: true }, (err, leaddata) => {
                 if (leaddata) {
                     req.session.Receptionmessages = [{ msg: `lead is assign to ${deptdata.dept_name}` }]

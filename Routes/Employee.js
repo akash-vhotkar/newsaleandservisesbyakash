@@ -20,5 +20,20 @@ router.get('/', (req, res) => {
 
 
 })
+router.post('/close', (req, res) => {
+    employeecontrolelr.handelcloselead(req, res);
 
+})
+router.get('/closeleads', (req, res) => {
+    employeecontrolelr.getcloseleads(req, res);
+
+})
+router.get('/calldesc/:leadid', (req, res) => {
+    console.log("call desc emp", req.params);
+    employeecontrolelr.getcalldesc(req, res, req.params.leadid)
+})
+router.post('/calldesc/addcall', (req, res) => {
+    employeecontrolelr.addcall(req, res);
+
+})
 module.exports = router;

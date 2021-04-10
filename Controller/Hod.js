@@ -12,7 +12,12 @@ module.exports = {
             const hoddeptid = hoddata.emp_deptid;
             empmodel.find({ emp_deptid: hoddeptid }).then(emp => {
 
+
+
+
                 leadmodel.find({ forworded_to_dept_id: hoddeptid, lead_status_string: "Pending" }).then(pendingtoassign => {
+
+
                     leadmodel.find({ forworded_to_dept_id: hoddeptid, lead_status_string: "Close" }).then(closedleads => {
                         leadmodel.find({ forworded_to_dept_id: hoddeptid, lead_status_string: "Assign" }).then(productionleads => {
                             const messages = req.session.Hodmessages;
@@ -69,12 +74,15 @@ module.exports = {
     handelAssignled: function (req, res, leadid) {
         const dbempid = req.body.emp_id;
         empmodel.findOne({ _id: dbempid }).then(empdata => {
+            const employeename = empdata.emp_name;
+            const employeeid = empdata.emp_id;
             leadmodel.findOneAndUpdate({ leadid: leadid }, {
-                forworded_to_emp_id: empdata.emp_id,
-                forworded_to_emp_name: empdata.emp_name,
+                forworded_to_emp_id: employeeid,
+                forworded_to_emp_name: employeename,
                 lead_status_string: "Assign"
             }, { new: true }, (err, data) => {
                 if (data) {
+                    console.log("emp data after hod  assign ", data);
                     req.session.Hodmessages = [{ msg: `now ${empdata.emp_name} is working on it ` }]
                     res.redirect('/Hod/');
 
