@@ -6,11 +6,21 @@ const employeeSchema = require('../Model/Employee');
 const hodcontroller = require('../Controller/Hod');
 router.use((req, res, next) => {
     if (req.session.empid && req.session.empcode) {
-        if (req.session.empcode == "2222")
+        if (req.session.empcode == "2222") {
             next();
+        }
+        else {
+            req.session.Loginmessages = [{ msg: "You do not have access to this page  !" }];
+            res.redirect('/auth/login');
+
+
+        }
+
     }
     else {
-        res.send("You didnt have access to this page <a href='/auth/login'>login</a> ");
+        req.session.Loginmessages = [{ msg: "Please login  !" }];
+        res.redirect('/auth/login');
+
 
     }
 })

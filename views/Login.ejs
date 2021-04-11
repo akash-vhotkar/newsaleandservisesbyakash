@@ -27,31 +27,48 @@
 </style>
 
 <body class="bg-color">
+    <div class="container">
+
+
+    </div>
     <div class="container p-0 d-flex justify-content-center align-items-center">
         <div class="col-md-5 my-sm-5 p-5 myformdiv shadow-lg">
             <form action="/auth/login" method="POST">
-                <%- include('partials/Loginerror')%>
-
+                <% if(typeof messages !='undefined' ){ %>
                     <div>
-                        <h1 class="text-center">Login Form</h1>
+                        <% messages.forEach(i=>{ %>
+                            <div class="alert alert-warning alert-dismissible fade show mb-2 form-control" id="myalert"
+                                role="alert">
+                                <strong>
+                                    <%- i.msg %>
+                                </strong>
+
+                                <button type="button" class="btn-close" id="mybtn" data-bs-dismiss="alert"
+                                    aria-label="Close"></button>
+                            </div>
+                            <%}); %>
                     </div>
-                    <div class="form-group p-3">
-                        <label>Enter Your Username <span class="star">*</span></label>
-                        <input type="text" name="username" class="form-control mt-2" aria-describedby="emailHelp"
-                            placeholder="Enter Username" required>
-                    </div>
-                    <div class="form-group p-3">
-                        <label>Enter Your Password <span class="star">*</span></label>
-                        <input type="password" class="form-control mt-2" name="password" id="exampleInputEmail1"
-                            aria-describedby="emailHelp" placeholder="Enter Password">
-                    </div>
-                    <div class="form-group p-3">
-                        <input type="submit" class="form-control p-2 bg-primary text-white" id="exampleInputPassword1"
-                            value="Submit">
-                    </div>
-                    <div class="form-group text-center">
-                        <a href="/auth/register">register as admin</a>
-                    </div>
+                    <% } %>
+                        <div>
+                            <h1 class="text-center">Login Form</h1>
+                        </div>
+                        <div class="form-group p-3">
+                            <label>Enter Your Username <span class="star">*</span></label>
+                            <input type="text" name="username" class="form-control mt-2" aria-describedby="emailHelp"
+                                placeholder="Enter Username" required>
+                        </div>
+                        <div class="form-group p-3">
+                            <label>Enter Your Password <span class="star">*</span></label>
+                            <input type="password" class="form-control mt-2" name="password" id="exampleInputEmail1"
+                                aria-describedby="emailHelp" placeholder="Enter Password">
+                        </div>
+                        <div class="form-group p-3">
+                            <input type="submit" class="form-control p-2 bg-primary text-white"
+                                id="exampleInputPassword1" value="Submit">
+                        </div>
+                        <div class="form-group text-center">
+                            <a href="/auth/register">register as admin</a>
+                        </div>
             </form>
         </div>
     </div>

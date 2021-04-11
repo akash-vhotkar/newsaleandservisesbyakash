@@ -9,18 +9,26 @@ const Grid = require('gridfs-stream')
 const crypto = require('crypto');
 const path = require('path')
 
-
 router.use((req, res, next) => {
     if (req.session.empid && req.session.empcode) {
-        if (req.session.empcode == "1111")
+        if (req.session.empcode == "1111") {
             next();
+        }
+        else {
+            req.session.Loginmessages = [{ msg: "You do not have access to this page  !" }];
+            res.redirect('/auth/login');
+
+
+        }
+
     }
     else {
-        res.send("You didnt have access to this page ");
+        req.session.Loginmessages = [{ msg: "Please login  !" }];
+        res.redirect('/auth/login');
+
 
     }
 })
-
 const url = "mongodb+srv://akash:akash1234@cluster0.4ayge.mongodb.net/salesandservises?retryWrites=true&w=majority";
 const conn = mongoose.createConnection(url);
 let gfs;

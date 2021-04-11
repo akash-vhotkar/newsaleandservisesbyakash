@@ -4,7 +4,8 @@ const shortid = require('shortid');
 const Employee = require('./Employee');
 module.exports = {
     getlogin: function (req, res) {
-        res.render("Login");
+        const messages = req.session.Loginmessages;
+        res.render("Login", { messages });
     },
     getregister: function (req, res) {
         res.render("Register")
@@ -15,6 +16,7 @@ module.exports = {
         UserSchema.findOne({ emp_username: username }).then(alluserdata => {
             if (alluserdata) {
                 bcrypt.compare(password, alluserdata.emp_password, (err, result) => {
+
 
                     if (result) {
                         req.session.empid = alluserdata.emp_id;
@@ -46,9 +48,9 @@ module.exports = {
 
                     }
                     else {
-                        let messages = [];
-                        messages.push({ msg: "Password does not Match !" })
-                        res.render("Login", { messages });
+
+                        req.session.Loginmessages = [{ msg: "Password does not Match !" }];
+                        res.redirect('/auth/login');
                     }
                 })
 
@@ -56,9 +58,9 @@ module.exports = {
 
             }
             else {
-                let messages = [];
-                messages.push({ msg: "User does not  exist !" })
-                res.render("Login", { messages });
+                req.session.Loginmessages = [{ msg: "User does not  exist !" }];
+                res.redirect('/auth/login');
+
 
             }
 
@@ -160,7 +162,9 @@ module.exports = {
 
                             }
                             else {
-                                res.redirect('/auth/login')
+                                req.session.Loginmessages = [{ msg: "Password changed sucssfully !" }];
+                                res.redirect('/auth/login');
+
                             }
 
                         })
